@@ -20,7 +20,6 @@
             padding-bottom: 80px;
         }
         
-        /* ===== HEADER ===== */
         header {
             background: linear-gradient(135deg, #6c2bd9, #00b4d8);
             padding: 15px 20px;
@@ -155,6 +154,16 @@
             color: #555;
             font-size: 13px;
             margin-top: 15px;
+        }
+        
+        .login-box .register-link {
+            color: #6c2bd9;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .login-box .register-link:hover {
+            color: #8b5cf6;
         }
         
         /* ===== KARTOCHKA ===== */
@@ -355,7 +364,6 @@
             margin-bottom: 12px;
         }
         
-        /* ===== BOSH SAHIFA ===== */
         .no-results {
             color: #555;
             text-align: center;
@@ -363,7 +371,6 @@
             font-size: 16px;
         }
         
-        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             padding: 20px;
@@ -375,7 +382,7 @@
             color: #6c2bd9;
         }
         
-        /* ===== TOAST XABAR ===== */
+        /* ===== TOAST ===== */
         .toast {
             position: fixed;
             bottom: 20px;
@@ -408,11 +415,40 @@
     <div class="login-box">
         <div class="logo">🔥</div>
         <h1>AKTIVED SCRIPTS</h1>
-        <p class="sub">Admin panelga kirish</p>
-        <input type="text" id="loginUser" placeholder="Username" value="admin">
-        <input type="password" id="loginPass" placeholder="Parol" value="aktived2026">
+        <p class="sub">Hisobingizga kiring</p>
+        
+        <input type="text" id="loginUser" placeholder="User">
+        <input type="password" id="loginPass" placeholder="Parol">
+        
         <button class="btn-login" onclick="login()">🔑 Kirish</button>
-        <p class="login-error" id="loginError">❌ Noto'g'ri username yoki parol!</p>
+        <p class="login-error" id="loginError">❌ User yoki parol noto'g'ri!</p>
+        
+        <p class="forgot" style="margin-top:15px;">
+            Hisobingiz yo'qmi? 
+            <span class="register-link" onclick="showRegister()">Ro'yxatdan o'tish</span>
+        </p>
+        <p class="forgot">Creator: aktived 🔥</p>
+    </div>
+</div>
+
+<!-- ===== RO'YXATDAN O'TISH ===== -->
+<div class="login-screen" id="registerScreen" style="display:none;">
+    <div class="login-box">
+        <div class="logo">📝</div>
+        <h1>Ro'yxatdan o'tish</h1>
+        <p class="sub">Yangi hisob yarating</p>
+        
+        <input type="text" id="regUser" placeholder="User">
+        <input type="password" id="regPass" placeholder="Parol">
+        <input type="password" id="regPass2" placeholder="Parolni takrorlang">
+        
+        <button class="btn-login" onclick="register()">✅ Ro'yxatdan o'tish</button>
+        <p class="login-error" id="regError" style="display:none;">❌ Xatolik!</p>
+        
+        <p class="forgot" style="margin-top:15px;">
+            Hisobingiz bormi? 
+            <span class="register-link" onclick="showLogin()">Kirish</span>
+        </p>
         <p class="forgot">Creator: aktived 🔥</p>
     </div>
 </div>
@@ -422,7 +458,7 @@
 
     <header>
         <h1>🔥 AKTIVED SCRIPTS</h1>
-        <p>Roblox script hub</p>
+        <p id="userDisplay">Xush kelibsiz!</p>
     </header>
 
     <div class="container">
@@ -453,7 +489,7 @@
         <div class="card">
             <h2>📜 Scriptlar</h2>
             <div id="scriptList">
-                <!-- Scriptlar shu yerga chiqadi -->
+                <!-- Scriptlar -->
             </div>
         </div>
         
@@ -468,46 +504,140 @@
 <div class="toast" id="toast"></div>
 
 <script>
-// ===== ADMIN =====
-const ADMIN = {
-    username: "admin",
-    password: "aktived2026"
-};
-
+// ===== O'ZGARUVCHILAR =====
 let scripts = [];
 let isAdmin = false;
+let currentUser = null;
 
 // ===== YUKLASH =====
 window.onload = function() {
     loadScripts();
     showScripts();
     updateTotal();
+    loadUsers();
 };
+
+// ===== USERLAR =====
+let users = [];
+
+function loadUsers() {
+    try {
+        const data = localStorage.getItem('aktived_users');
+        if (data) {
+            users = JSON.parse(data);
+        }
+    } catch(e) {
+        users = [];
+    }
+}
+
+function saveUsers() {
+    try {
+        localStorage.setItem('aktived_users', JSON.stringify(users));
+    } catch(e) {}
+}
+
+// ===== RO'YXATDAN O'TISH =====
+function showRegister() {
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('registerScreen').style.display = 'flex';
+    document.getElementById('regError').style.display = 'none';
+}
+
+function showLogin() {
+    document.getElementById('registerScreen').style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'flex';
+    document.getElementById('loginError').style.display = 'none';
+}
+
+function register() {
+    const user = document.getElementById('regUser').value.trim();
+    const pass = document.getElementById('regPass').value;
+    const pass2 = document.getElementById('regPass2').value;
+    
+    if (!user || !pass) {
+        document.getElementById('regError').textContent = '❌ User va parolni kiriting!';
+        document.getElementById('regError').style.display = 'block';
+        return;
+    }
+    
+    if (pass !== pass2) {
+        document.getElementById('regError').textContent = '❌ Parollar mos emas!';
+        document.getElementById('regError').style.display = 'block';
+        return;
+    }
+    
+    if (pass.length < 4) {
+        document.getElementById('regError').textContent = '❌ Parol 4 ta belgidan kam!';
+        document.getElementById('regError').style.display = 'block';
+        return;
+    }
+    
+    // User borligini tekshirish
+    if (users.find(u => u.username === user)) {
+        document.getElementById('regError').textContent = '❌ Bu user band!';
+        document.getElementById('regError').style.display = 'block';
+        return;
+    }
+    
+    users.push({
+        username: user,
+        password: pass,
+        isAdmin: users.length === 0 // Birinchi user admin
+    });
+    
+    saveUsers();
+    showToast('✅ Hisob yaratildi!');
+    showLogin();
+    document.getElementById('loginUser').value = user;
+    document.getElementById('loginPass').value = pass;
+}
 
 // ===== LOGIN =====
 function login() {
-    const user = document.getElementById('loginUser').value;
+    const user = document.getElementById('loginUser').value.trim();
     const pass = document.getElementById('loginPass').value;
     
-    if (user === ADMIN.username && pass === ADMIN.password) {
-        isAdmin = true;
+    if (!user || !pass) {
+        document.getElementById('loginError').textContent = '❌ User va parolni kiriting!';
+        document.getElementById('loginError').style.display = 'block';
+        return;
+    }
+    
+    const found = users.find(u => u.username === user && u.password === pass);
+    
+    if (found) {
+        isAdmin = found.isAdmin || false;
+        currentUser = user;
+        
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('mainApp').style.display = 'block';
-        document.getElementById('adminPanel').style.display = 'block';
         document.getElementById('loginError').style.display = 'none';
+        
+        if (isAdmin) {
+            document.getElementById('adminPanel').style.display = 'block';
+            document.getElementById('userDisplay').textContent = '👑 Admin: ' + user;
+        } else {
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('userDisplay').textContent = '👤 Xush kelibsiz, ' + user + '!';
+        }
+        
         showScripts();
-        showToast('✅ Xush kelibsiz, Admin!');
+        showToast('✅ Xush kelibsiz, ' + user + '!');
     } else {
+        document.getElementById('loginError').textContent = '❌ User yoki parol noto\'g\'ri!';
         document.getElementById('loginError').style.display = 'block';
     }
 }
 
 function logout() {
     isAdmin = false;
+    currentUser = null;
     document.getElementById('adminPanel').style.display = 'none';
     document.getElementById('loginScreen').classList.remove('hidden');
     document.getElementById('mainApp').style.display = 'none';
-    showScripts();
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
     showToast('👋 Chiqildi');
 }
 
@@ -522,7 +652,7 @@ function clearSearch() {
     showScripts();
 }
 
-// ===== SCRIPTLARNI KORSATISH =====
+// ===== SCRIPTLAR =====
 function showScripts(filter = '') {
     const list = document.getElementById('scriptList');
     list.innerHTML = '';
@@ -556,14 +686,12 @@ function showScripts(filter = '') {
     });
 }
 
-// ===== NUSXALASH =====
 function copyScript(code) {
     if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(code).then(() => {
             showToast('✅ Kod nusxalandi!');
         });
     } else {
-        // Fallback
         const textarea = document.createElement('textarea');
         textarea.value = code;
         document.body.appendChild(textarea);
@@ -574,7 +702,6 @@ function copyScript(code) {
     }
 }
 
-// ===== SCRIPT QOSHISH =====
 function addScript() {
     const name = document.getElementById('scriptName').value.trim();
     const code = document.getElementById('scriptCode').value.trim();
@@ -601,7 +728,6 @@ function addScript() {
     showToast('✅ Script qo\'shildi!');
 }
 
-// ===== SCRIPT OCHIRISH =====
 function deleteScript(id) {
     if (confirm('Bu scriptni o\'chirmoqchimisiz?')) {
         scripts = scripts.filter(s => s.id !== id);
@@ -612,7 +738,6 @@ function deleteScript(id) {
     }
 }
 
-// ===== JAMI SONI =====
 function updateTotal() {
     document.getElementById('totalCount').textContent = scripts.length;
 }
@@ -629,6 +754,23 @@ function loadScripts() {
         const data = localStorage.getItem('aktived_scripts');
         if (data) {
             scripts = JSON.parse(data);
+        } else {
+            // Default scriptlar
+            scripts = [
+                {
+                    id: '1',
+                    name: 'Pistol Arena ESP',
+                    code: 'loadstring(game:HttpGet("https://rawscripts.net/raw/Pistol-Arena-SFG-OP-PA-Script-KEYLESS-Plug-and-Play-200527"))()',
+                    date: '20.06.2026'
+                },
+                {
+                    id: '2',
+                    name: 'Rayfield UI',
+                    code: 'loadstring(game:HttpGet("https://sirius.menu/rayfield"))()',
+                    date: '20.06.2026'
+                }
+            ];
+            saveScripts();
         }
     } catch(e) {
         scripts = [];
@@ -655,25 +797,11 @@ document.addEventListener('keydown', function(e) {
     }
 });
 
-// ===== DEFAULT SCRIPTLAR =====
-if (scripts.length === 0) {
-    scripts = [
-        {
-            id: '1',
-            name: 'Pistol Arena ESP',
-            code: 'loadstring(game:HttpGet("https://rawscripts.net/raw/Pistol-Arena-SFG-OP-PA-Script-KEYLESS-Plug-and-Play-200527"))()',
-            date: '20.06.2026'
-        },
-        {
-            id: '2',
-            name: 'Rayfield UI',
-            code: 'loadstring(game:HttpGet("https://sirius.menu/rayfield"))()',
-            date: '20.06.2026'
-        }
-    ];
-    saveScripts();
-}
-</script>
+// ===== CHIQISH TUGMASI =====
+document.querySelector('.btn-logout')?.addEventListener('click', logout);
 
+console.log('🔥 AKTIVED SCRIPTS sayti yuklandi!');
+console.log('👤 Creator: aktived');
+</script>
 </body>
-    </html>
+</html>
