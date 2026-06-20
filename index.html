@@ -1,74 +1,191 @@
 <!DOCTYPE html>
-<html>
+<html lang="uz">
 <head>
-    <title>Aktived Scripts</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Aktived Scripts</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
         
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
             background: #0a0a0a;
             color: #fff;
             min-height: 100vh;
+            padding-bottom: 80px;
         }
         
+        /* ===== HEADER ===== */
         header {
             background: linear-gradient(135deg, #6c2bd9, #00b4d8);
-            padding: 20px;
+            padding: 15px 20px;
             text-align: center;
-            border-bottom: 3px solid #8b5cf6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(108, 43, 217, 0.3);
         }
         
         header h1 {
-            font-size: 2.5em;
+            font-size: 22px;
             text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+            letter-spacing: 1px;
         }
         
         header p {
+            font-size: 12px;
             color: #ddd;
-            margin-top: 5px;
+            margin-top: 2px;
+            opacity: 0.8;
         }
         
         .container {
-            max-width: 900px;
-            margin: 30px auto;
-            padding: 0 20px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 15px;
         }
         
+        /* ===== LOGIN EKRANI ===== */
+        .login-screen {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+            padding: 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 999;
+        }
+        
+        .login-screen.hidden {
+            display: none;
+        }
+        
+        .login-box {
+            background: #1a1a2e;
+            padding: 35px 25px;
+            border-radius: 24px;
+            border: 1px solid #2d2d44;
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+            animation: fadeUp 0.5s ease;
+        }
+        
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .login-box .logo {
+            font-size: 50px;
+            margin-bottom: 5px;
+        }
+        
+        .login-box h1 {
+            font-size: 24px;
+            background: linear-gradient(135deg, #6c2bd9, #00b4d8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+        
+        .login-box .sub {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+        
+        .login-box input {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 8px 0;
+            background: #0d0d1a;
+            border: 2px solid #2d2d44;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        .login-box input:focus {
+            outline: none;
+            border-color: #6c2bd9;
+        }
+        
+        .login-box input::placeholder {
+            color: #555;
+        }
+        
+        .login-box .btn-login {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #6c2bd9, #8b5cf6);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .login-box .btn-login:active {
+            transform: scale(0.97);
+        }
+        
+        .login-error {
+            color: #ef4444;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .login-box .forgot {
+            color: #555;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+        
+        /* ===== KARTOCHKA ===== */
         .card {
             background: #1a1a2e;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 15px;
             border: 1px solid #2d2d44;
         }
         
         .card h2 {
             color: #8b5cf6;
-            margin-bottom: 15px;
+            font-size: 17px;
+            margin-bottom: 12px;
         }
         
         /* ===== QIDIRUV ===== */
         .search-box {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
+            gap: 8px;
         }
         
         .search-box input {
             flex: 1;
-            padding: 14px;
+            padding: 12px 14px;
             background: #0d0d1a;
             border: 2px solid #2d2d44;
-            border-radius: 10px;
+            border-radius: 12px;
             color: #fff;
-            font-size: 16px;
+            font-size: 15px;
         }
         
         .search-box input:focus {
@@ -77,63 +194,81 @@
         }
         
         .search-box button {
-            padding: 14px 25px;
+            padding: 12px 16px;
             background: #6c2bd9;
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             color: #fff;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+            white-space: nowrap;
         }
         
-        .search-box button:hover {
-            background: #8b5cf6;
+        .search-box button:active {
+            transform: scale(0.95);
         }
         
         .search-info {
             color: #888;
-            font-size: 14px;
-            margin-bottom: 15px;
+            font-size: 13px;
+            margin-top: 10px;
         }
         
         /* ===== SCRIPT BLOKI ===== */
         .script-box {
             background: #0d0d1a;
-            border-radius: 10px;
-            padding: 15px;
+            border-radius: 12px;
+            padding: 14px;
             margin: 10px 0;
             border-left: 4px solid #6c2bd9;
         }
         
         .script-box .name {
             color: #8b5cf6;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: bold;
         }
         
         .script-box code {
             color: #00d4ff;
-            font-size: 14px;
+            font-size: 13px;
             word-break: break-all;
             display: block;
-            margin: 10px 0;
+            margin: 8px 0;
+            background: #0a0a0a;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
         }
         
         .script-box .meta {
-            color: #888;
-            font-size: 12px;
+            color: #555;
+            font-size: 11px;
+            margin-top: 5px;
         }
         
+        .script-box .btn-group {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+        
+        /* ===== TUGMALAR ===== */
         .btn {
-            padding: 8px 20px;
+            padding: 8px 18px;
             border: none;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 13px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
+        }
+        
+        .btn:active {
+            transform: scale(0.95);
         }
         
         .btn-copy {
@@ -148,22 +283,38 @@
         .btn-danger {
             background: #ef4444;
             color: #fff;
-            padding: 5px 15px;
+            padding: 6px 14px;
             font-size: 12px;
-        }
-        
-        .btn-danger:hover {
-            background: #dc2626;
         }
         
         .btn-admin {
             background: #f59e0b;
             color: #fff;
-            padding: 8px 20px;
+            padding: 8px 16px;
+            font-size: 13px;
         }
         
-        .btn-admin:hover {
+        .btn-admin:active {
             background: #d97706;
+        }
+        
+        .btn-upload {
+            background: #00b894;
+            color: #fff;
+            padding: 12px 20px;
+            width: 100%;
+            font-size: 16px;
+        }
+        
+        .btn-upload:active {
+            background: #00a884;
+        }
+        
+        .btn-logout {
+            background: #ef4444;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 13px;
         }
         
         /* ===== ADMIN PANEL ===== */
@@ -171,179 +322,158 @@
             display: none;
         }
         
+        .admin-panel input,
         .admin-panel textarea {
             width: 100%;
-            height: 120px;
+            padding: 12px;
             background: #0d0d1a;
             border: 2px solid #2d2d44;
-            border-radius: 8px;
+            border-radius: 12px;
             color: #fff;
-            padding: 10px;
-            font-family: monospace;
+            font-size: 15px;
+            margin: 6px 0;
+            font-family: inherit;
+        }
+        
+        .admin-panel textarea {
+            height: 110px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
             font-size: 14px;
         }
         
-        .admin-panel input {
-            width: 100%;
-            padding: 12px;
-            background: #0d0d1a;
-            border: 2px solid #2d2d44;
-            border-radius: 8px;
-            color: #fff;
-            margin: 10px 0;
+        .admin-panel input:focus,
+        .admin-panel textarea:focus {
+            outline: none;
+            border-color: #6c2bd9;
         }
         
-        .admin-panel .btn-upload {
-            background: #00b894;
-            color: #fff;
-            padding: 10px 30px;
-        }
-        
-        .admin-panel .btn-upload:hover {
-            background: #00a884;
-        }
-        
-        /* ===== LOGIN ===== */
-        .login-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            justify-content: center;
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
             align-items: center;
-            z-index: 999;
+            margin-bottom: 12px;
         }
         
-        .login-box {
-            background: #1a1a2e;
-            padding: 40px;
-            border-radius: 20px;
-            border: 1px solid #2d2d44;
-            width: 350px;
+        /* ===== BOSH SAHIFA ===== */
+        .no-results {
+            color: #555;
             text-align: center;
-        }
-        
-        .login-box input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #0d0d1a;
-            border: 2px solid #2d2d44;
-            border-radius: 8px;
-            color: #fff;
+            padding: 30px;
             font-size: 16px;
         }
         
-        .login-box .btn-login {
-            width: 100%;
-            padding: 12px;
-            background: #6c2bd9;
-            border: none;
-            border-radius: 8px;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        
-        .login-box .btn-login:hover {
-            background: #8b5cf6;
-        }
-        
-        .login-error {
-            color: #ef4444;
-            margin-top: 10px;
-            display: none;
-        }
-        
+        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
-            padding: 30px;
-            color: #555;
-            font-size: 14px;
+            padding: 20px;
+            color: #444;
+            font-size: 12px;
         }
         
         .footer span {
-            color: #8b5cf6;
+            color: #6c2bd9;
         }
         
-        .no-results {
-            color: #888;
+        /* ===== TOAST XABAR ===== */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1a1a2e;
+            padding: 12px 24px;
+            border-radius: 12px;
+            border: 1px solid #2d2d44;
+            color: #fff;
+            font-size: 14px;
+            z-index: 999;
+            opacity: 0;
+            transition: all 0.4s;
+            pointer-events: none;
+            max-width: 90%;
             text-align: center;
-            padding: 30px;
-            font-size: 18px;
+        }
+        
+        .toast.show {
+            opacity: 1;
+            bottom: 30px;
         }
     </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<header>
-    <h1>🔥 AKTIVED SCRIPTS</h1>
-    <p>Roblox script hub - Yuklab olish, nusxalash va boshqarish</p>
-</header>
-
-<div class="container">
-    
-    <!-- ===== QIDIRUV ===== -->
-    <div class="card">
-        <h2>🔍 Script Qidiruv</h2>
-        <div class="search-box">
-            <input type="text" id="searchInput" placeholder="Script nomi yoki kalit so'z..." onkeyup="searchScripts()">
-            <button onclick="searchScripts()">🔍 Qidirish</button>
-            <button onclick="clearSearch()" style="background:#2d2d44;">✕</button>
-        </div>
-        <div class="search-info" id="searchInfo">📊 Jami: <span id="totalCount">0</span> ta script</div>
-    </div>
-    
-    <!-- ===== ADMIN PANEL (FAQAT ADMIN KORADI) ===== -->
-    <div class="admin-panel card" id="adminPanel">
-        <h2>🔧 Admin Panel</h2>
-        <p style="color: #888; margin-bottom: 15px;">📌 Script qo'shish va boshqarish</p>
-        
-        <input type="text" id="scriptName" placeholder="Script nomi...">
-        <textarea id="scriptCode" placeholder="Script kodini yozing..."></textarea>
-        
-        <button class="btn btn-upload" onclick="addScript()">✅ Script Qo'shish</button>
-        <button class="btn btn-danger" onclick="logout()" style="margin-left: 10px;">🚪 Chiqish</button>
-    </div>
-    
-    <!-- ===== SCRIPTLAR ===== -->
-    <div class="card">
-        <h2>📜 Barcha Scriptlar</h2>
-        <div id="scriptList">
-            <!-- Scriptlar shu yerga chiqadi -->
-        </div>
-    </div>
-</div>
-
-<!-- ===== LOGIN MODAL ===== -->
-<div class="login-modal" id="loginModal">
+<!-- ===== LOGIN EKRANI ===== -->
+<div class="login-screen" id="loginScreen">
     <div class="login-box">
-        <h1>🔑 Admin Kirish</h1>
-        <p style="color: #888;">Faqat admin uchun</p>
+        <div class="logo">🔥</div>
+        <h1>AKTIVED SCRIPTS</h1>
+        <p class="sub">Admin panelga kirish</p>
         <input type="text" id="loginUser" placeholder="Username" value="admin">
         <input type="password" id="loginPass" placeholder="Parol" value="aktived2026">
-        <button class="btn-login" onclick="adminLogin()">Kirish</button>
-        <p class="login-error" id="loginError">❌ Noto'g'ri!</p>
+        <button class="btn-login" onclick="login()">🔑 Kirish</button>
+        <p class="login-error" id="loginError">❌ Noto'g'ri username yoki parol!</p>
+        <p class="forgot">Creator: aktived 🔥</p>
     </div>
 </div>
 
-<div class="footer">
-    <p>© 2026 <span>AKTIVED SCRIPTS</span> | Creator: aktived 🔥</p>
+<!-- ===== ASOSIY SAHIFA ===== -->
+<div id="mainApp" style="display:none;">
+
+    <header>
+        <h1>🔥 AKTIVED SCRIPTS</h1>
+        <p>Roblox script hub</p>
+    </header>
+
+    <div class="container">
+        
+        <!-- QIDIRUV -->
+        <div class="card">
+            <h2>🔍 Qidiruv</h2>
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Script nomi..." oninput="searchScripts()">
+                <button onclick="searchScripts()">🔍</button>
+                <button onclick="clearSearch()" style="background:#2d2d44;">✕</button>
+            </div>
+            <div class="search-info">📊 Jami: <span id="totalCount">0</span> ta script</div>
+        </div>
+        
+        <!-- ADMIN PANEL -->
+        <div class="admin-panel card" id="adminPanel">
+            <div class="admin-header">
+                <h2>🔧 Admin Panel</h2>
+                <button class="btn btn-logout" onclick="logout()">🚪 Chiqish</button>
+            </div>
+            <input type="text" id="scriptName" placeholder="Script nomi...">
+            <textarea id="scriptCode" placeholder="Script kodini yozing..."></textarea>
+            <button class="btn btn-upload" onclick="addScript()">✅ Script Qo'shish</button>
+        </div>
+        
+        <!-- SCRIPTLAR -->
+        <div class="card">
+            <h2>📜 Scriptlar</h2>
+            <div id="scriptList">
+                <!-- Scriptlar shu yerga chiqadi -->
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2026 <span>AKTIVED SCRIPTS</span></p>
+            <p style="margin-top:4px; color:#333;">Creator: aktived 🔥</p>
+        </div>
+    </div>
 </div>
 
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
 <script>
-// ===== ADMIN MALUMOTLARI =====
+// ===== ADMIN =====
 const ADMIN = {
     username: "admin",
     password: "aktived2026"
 };
 
-// ===== SCRIPTLAR =====
 let scripts = [];
 let isAdmin = false;
 
@@ -353,6 +483,33 @@ window.onload = function() {
     showScripts();
     updateTotal();
 };
+
+// ===== LOGIN =====
+function login() {
+    const user = document.getElementById('loginUser').value;
+    const pass = document.getElementById('loginPass').value;
+    
+    if (user === ADMIN.username && pass === ADMIN.password) {
+        isAdmin = true;
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('mainApp').style.display = 'block';
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('loginError').style.display = 'none';
+        showScripts();
+        showToast('✅ Xush kelibsiz, Admin!');
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+    }
+}
+
+function logout() {
+    isAdmin = false;
+    document.getElementById('adminPanel').style.display = 'none';
+    document.getElementById('loginScreen').classList.remove('hidden');
+    document.getElementById('mainApp').style.display = 'none';
+    showScripts();
+    showToast('👋 Chiqildi');
+}
 
 // ===== QIDIRUV =====
 function searchScripts() {
@@ -371,7 +528,6 @@ function showScripts(filter = '') {
     list.innerHTML = '';
     
     let filtered = scripts;
-    
     if (filter) {
         filtered = scripts.filter(s => 
             s.name.toLowerCase().includes(filter) ||
@@ -384,15 +540,16 @@ function showScripts(filter = '') {
         return;
     }
     
-    filtered.forEach((script, index) => {
-        const realIndex = scripts.indexOf(script);
+    filtered.forEach((script) => {
         const div = document.createElement('div');
         div.className = 'script-box';
         div.innerHTML = `
             <div class="name">📌 ${script.name}</div>
             <code>${script.code}</code>
-            <button class="btn btn-copy" onclick="copyScript('${script.code}')">📋 Nusxa olish</button>
-            ${isAdmin ? `<button class="btn btn-danger" onclick="deleteScript(${realIndex})">🗑 O'chirish</button>` : ''}
+            <div class="btn-group">
+                <button class="btn btn-copy" onclick="copyScript('${script.code.replace(/'/g, "\\'")}')">📋 Nusxa olish</button>
+                ${isAdmin ? `<button class="btn btn-danger" onclick="deleteScript('${script.id}')">🗑 O'chirish</button>` : ''}
+            </div>
             <div class="meta">${script.date || 'Yangi'}</div>
         `;
         list.appendChild(div);
@@ -401,39 +558,20 @@ function showScripts(filter = '') {
 
 // ===== NUSXALASH =====
 function copyScript(code) {
-    navigator.clipboard.writeText(code).then(() => {
-        const btn = event.target;
-        const original = btn.textContent;
-        btn.textContent = '✅ Nusxalandi!';
-        setTimeout(() => { btn.textContent = original; }, 2000);
-    });
-}
-
-// ===== ADMIN LOGIN =====
-function adminLogin() {
-    const user = document.getElementById('loginUser').value;
-    const pass = document.getElementById('loginPass').value;
-    
-    if (user === ADMIN.username && pass === ADMIN.password) {
-        isAdmin = true;
-        document.getElementById('loginModal').style.display = 'none';
-        document.getElementById('adminPanel').style.display = 'block';
-        document.getElementById('loginError').style.display = 'none';
-        showScripts();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(code).then(() => {
+            showToast('✅ Kod nusxalandi!');
+        });
     } else {
-        document.getElementById('loginError').style.display = 'block';
+        // Fallback
+        const textarea = document.createElement('textarea');
+        textarea.value = code;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('✅ Kod nusxalandi!');
     }
-}
-
-function logout() {
-    isAdmin = false;
-    document.getElementById('adminPanel').style.display = 'none';
-    showScripts();
-}
-
-// ===== ADMIN TUGMASI =====
-function showLogin() {
-    document.getElementById('loginModal').style.display = 'flex';
 }
 
 // ===== SCRIPT QOSHISH =====
@@ -442,14 +580,15 @@ function addScript() {
     const code = document.getElementById('scriptCode').value.trim();
     
     if (!name || !code) {
-        alert('Iltimos, nom va kodni kiriting!');
+        showToast('⚠️ Nom va kodni kiriting!');
         return;
     }
     
     scripts.push({
+        id: Date.now().toString(),
         name: name,
         code: code,
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString('uz-UZ')
     });
     
     saveScripts();
@@ -459,16 +598,17 @@ function addScript() {
     document.getElementById('scriptName').value = '';
     document.getElementById('scriptCode').value = '';
     
-    alert('✅ Script qo\'shildi!');
+    showToast('✅ Script qo\'shildi!');
 }
 
 // ===== SCRIPT OCHIRISH =====
-function deleteScript(index) {
+function deleteScript(id) {
     if (confirm('Bu scriptni o\'chirmoqchimisiz?')) {
-        scripts.splice(index, 1);
+        scripts = scripts.filter(s => s.id !== id);
         saveScripts();
         showScripts();
         updateTotal();
+        showToast('🗑 Script o\'chirildi');
     }
 }
 
@@ -479,23 +619,61 @@ function updateTotal() {
 
 // ===== LOCAL STORAGE =====
 function saveScripts() {
-    localStorage.setItem('aktived_scripts', JSON.stringify(scripts));
+    try {
+        localStorage.setItem('aktived_scripts', JSON.stringify(scripts));
+    } catch(e) {}
 }
 
 function loadScripts() {
-    const data = localStorage.getItem('aktived_scripts');
-    if (data) {
-        scripts = JSON.parse(data);
+    try {
+        const data = localStorage.getItem('aktived_scripts');
+        if (data) {
+            scripts = JSON.parse(data);
+        }
+    } catch(e) {
+        scripts = [];
     }
 }
 
-// ===== KEYBOARD =====
+// ===== TOAST =====
+function showToast(text) {
+    const toast = document.getElementById('toast');
+    toast.textContent = text;
+    toast.classList.add('show');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
+        toast.classList.remove('show');
+    }, 2500);
+}
+
+// ===== ENTER BOSILGANDA =====
 document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        document.getElementById('loginModal').style.display = 'none';
+    if (e.key === 'Enter') {
+        if (document.getElementById('loginScreen').classList.contains('hidden') === false) {
+            login();
+        }
     }
 });
+
+// ===== DEFAULT SCRIPTLAR =====
+if (scripts.length === 0) {
+    scripts = [
+        {
+            id: '1',
+            name: 'Pistol Arena ESP',
+            code: 'loadstring(game:HttpGet("https://rawscripts.net/raw/Pistol-Arena-SFG-OP-PA-Script-KEYLESS-Plug-and-Play-200527"))()',
+            date: '20.06.2026'
+        },
+        {
+            id: '2',
+            name: 'Rayfield UI',
+            code: 'loadstring(game:HttpGet("https://sirius.menu/rayfield"))()',
+            date: '20.06.2026'
+        }
+    ];
+    saveScripts();
+}
 </script>
 
 </body>
-  </html>
+    </html>
