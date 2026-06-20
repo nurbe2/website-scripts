@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aktived Scripts</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #6c2bd9, #00b4d8);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #8b5cf6;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+        
+        header p {
+            color: #ddd;
+            margin-top: 5px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        
+        .card {
+            background: #1a1a2e;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #2d2d44;
+        }
+        
+        .card h2 {
+            color: #8b5cf6;
+            margin-bottom: 15px;
+        }
+        
+        /* ===== QIDIRUV ===== */
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .search-box input {
+            flex: 1;
+            padding: 14px;
+            background: #0d0d1a;
+            border: 2px solid #2d2d44;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .search-box input:focus {
+            outline: none;
+            border-color: #6c2bd9;
+        }
+        
+        .search-box button {
+            padding: 14px 25px;
+            background: #6c2bd9;
+            border: none;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .search-box button:hover {
+            background: #8b5cf6;
+        }
+        
+        .search-info {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        /* ===== SCRIPT BLOKI ===== */
+        .script-box {
+            background: #0d0d1a;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #6c2bd9;
+        }
+        
+        .script-box .name {
+            color: #8b5cf6;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .script-box code {
+            color: #00d4ff;
+            font-size: 14px;
+            word-break: break-all;
+            display: block;
+            margin: 10px 0;
+        }
+        
+        .script-box .meta {
+            color: #888;
+            font-size: 12px;
+        }
+        
+        .btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-copy {
+            background: #2d2d44;
+            color: #fff;
+        }
+        
+        .btn-copy:hover {
+            background: #6c2bd9;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: #fff;
+            padding: 5px 15px;
+            font-size: 12px;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .btn-admin {
+            background: #f59e0b;
+            color: #fff;
+            padding: 8px 20px;
+        }
+        
+        .btn-admin:hover {
+            background: #d97706;
+        }
+        
+        /* ===== ADMIN PANEL ===== */
+        .admin-panel {
+            display: none;
+        }
+        
+        .admin-panel textarea {
+            width: 100%;
+            height: 120px;
+            background: #0d0d1a;
+            border: 2px solid #2d2d44;
+            border-radius: 8px;
+            color: #fff;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .admin-panel input {
+            width: 100%;
+            padding: 12px;
+            background: #0d0d1a;
+            border: 2px solid #2d2d44;
+            border-radius: 8px;
+            color: #fff;
+            margin: 10px 0;
+        }
+        
+        .admin-panel .btn-upload {
+            background: #00b894;
+            color: #fff;
+            padding: 10px 30px;
+        }
+        
+        .admin-panel .btn-upload:hover {
+            background: #00a884;
+        }
+        
+        /* ===== LOGIN ===== */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+        
+        .login-box {
+            background: #1a1a2e;
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid #2d2d44;
+            width: 350px;
+            text-align: center;
+        }
+        
+        .login-box input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #0d0d1a;
+            border: 2px solid #2d2d44;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .login-box .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: #6c2bd9;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .login-box .btn-login:hover {
+            background: #8b5cf6;
+        }
+        
+        .login-error {
+            color: #ef4444;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        .footer span {
+            color: #8b5cf6;
+        }
+        
+        .no-results {
+            color: #888;
+            text-align: center;
+            padding: 30px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+    <h1>🔥 AKTIVED SCRIPTS</h1>
+    <p>Roblox script hub - Yuklab olish, nusxalash va boshqarish</p>
+</header>
+
+<div class="container">
+    
+    <!-- ===== QIDIRUV ===== -->
+    <div class="card">
+        <h2>🔍 Script Qidiruv</h2>
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Script nomi yoki kalit so'z..." onkeyup="searchScripts()">
+            <button onclick="searchScripts()">🔍 Qidirish</button>
+            <button onclick="clearSearch()" style="background:#2d2d44;">✕</button>
+        </div>
+        <div class="search-info" id="searchInfo">📊 Jami: <span id="totalCount">0</span> ta script</div>
+    </div>
+    
+    <!-- ===== ADMIN PANEL (FAQAT ADMIN KORADI) ===== -->
+    <div class="admin-panel card" id="adminPanel">
+        <h2>🔧 Admin Panel</h2>
+        <p style="color: #888; margin-bottom: 15px;">📌 Script qo'shish va boshqarish</p>
+        
+        <input type="text" id="scriptName" placeholder="Script nomi...">
+        <textarea id="scriptCode" placeholder="Script kodini yozing..."></textarea>
+        
+        <button class="btn btn-upload" onclick="addScript()">✅ Script Qo'shish</button>
+        <button class="btn btn-danger" onclick="logout()" style="margin-left: 10px;">🚪 Chiqish</button>
+    </div>
+    
+    <!-- ===== SCRIPTLAR ===== -->
+    <div class="card">
+        <h2>📜 Barcha Scriptlar</h2>
+        <div id="scriptList">
+            <!-- Scriptlar shu yerga chiqadi -->
+        </div>
+    </div>
+</div>
+
+<!-- ===== LOGIN MODAL ===== -->
+<div class="login-modal" id="loginModal">
+    <div class="login-box">
+        <h1>🔑 Admin Kirish</h1>
+        <p style="color: #888;">Faqat admin uchun</p>
+        <input type="text" id="loginUser" placeholder="Username" value="admin">
+        <input type="password" id="loginPass" placeholder="Parol" value="aktived2026">
+        <button class="btn-login" onclick="adminLogin()">Kirish</button>
+        <p class="login-error" id="loginError">❌ Noto'g'ri!</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>© 2026 <span>AKTIVED SCRIPTS</span> | Creator: aktived 🔥</p>
+</div>
+
+<script>
+// ===== ADMIN MALUMOTLARI =====
+const ADMIN = {
+    username: "admin",
+    password: "aktived2026"
+};
+
+// ===== SCRIPTLAR =====
+let scripts = [];
+let isAdmin = false;
+
+// ===== YUKLASH =====
+window.onload = function() {
+    loadScripts();
+    showScripts();
+    updateTotal();
+};
+
+// ===== QIDIRUV =====
+function searchScripts() {
+    const query = document.getElementById('searchInput').value.toLowerCase().trim();
+    showScripts(query);
+}
+
+function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    showScripts();
+}
+
+// ===== SCRIPTLARNI KORSATISH =====
+function showScripts(filter = '') {
+    const list = document.getElementById('scriptList');
+    list.innerHTML = '';
+    
+    let filtered = scripts;
+    
+    if (filter) {
+        filtered = scripts.filter(s => 
+            s.name.toLowerCase().includes(filter) ||
+            s.code.toLowerCase().includes(filter)
+        );
+    }
+    
+    if (filtered.length === 0) {
+        list.innerHTML = '<div class="no-results">😕 Hech narsa topilmadi</div>';
+        return;
+    }
+    
+    filtered.forEach((script, index) => {
+        const realIndex = scripts.indexOf(script);
+        const div = document.createElement('div');
+        div.className = 'script-box';
+        div.innerHTML = `
+            <div class="name">📌 ${script.name}</div>
+            <code>${script.code}</code>
+            <button class="btn btn-copy" onclick="copyScript('${script.code}')">📋 Nusxa olish</button>
+            ${isAdmin ? `<button class="btn btn-danger" onclick="deleteScript(${realIndex})">🗑 O'chirish</button>` : ''}
+            <div class="meta">${script.date || 'Yangi'}</div>
+        `;
+        list.appendChild(div);
+    });
+}
+
+// ===== NUSXALASH =====
+function copyScript(code) {
+    navigator.clipboard.writeText(code).then(() => {
+        const btn = event.target;
+        const original = btn.textContent;
+        btn.textContent = '✅ Nusxalandi!';
+        setTimeout(() => { btn.textContent = original; }, 2000);
+    });
+}
+
+// ===== ADMIN LOGIN =====
+function adminLogin() {
+    const user = document.getElementById('loginUser').value;
+    const pass = document.getElementById('loginPass').value;
+    
+    if (user === ADMIN.username && pass === ADMIN.password) {
+        isAdmin = true;
+        document.getElementById('loginModal').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('loginError').style.display = 'none';
+        showScripts();
+    } else {
+        document.getElementById('loginError').style.display = 'block';
+    }
+}
+
+function logout() {
+    isAdmin = false;
+    document.getElementById('adminPanel').style.display = 'none';
+    showScripts();
+}
+
+// ===== ADMIN TUGMASI =====
+function showLogin() {
+    document.getElementById('loginModal').style.display = 'flex';
+}
+
+// ===== SCRIPT QOSHISH =====
+function addScript() {
+    const name = document.getElementById('scriptName').value.trim();
+    const code = document.getElementById('scriptCode').value.trim();
+    
+    if (!name || !code) {
+        alert('Iltimos, nom va kodni kiriting!');
+        return;
+    }
+    
+    scripts.push({
+        name: name,
+        code: code,
+        date: new Date().toLocaleDateString()
+    });
+    
+    saveScripts();
+    showScripts();
+    updateTotal();
+    
+    document.getElementById('scriptName').value = '';
+    document.getElementById('scriptCode').value = '';
+    
+    alert('✅ Script qo\'shildi!');
+}
+
+// ===== SCRIPT OCHIRISH =====
+function deleteScript(index) {
+    if (confirm('Bu scriptni o\'chirmoqchimisiz?')) {
+        scripts.splice(index, 1);
+        saveScripts();
+        showScripts();
+        updateTotal();
+    }
+}
+
+// ===== JAMI SONI =====
+function updateTotal() {
+    document.getElementById('totalCount').textContent = scripts.length;
+}
+
+// ===== LOCAL STORAGE =====
+function saveScripts() {
+    localStorage.setItem('aktived_scripts', JSON.stringify(scripts));
+}
+
+function loadScripts() {
+    const data = localStorage.getItem('aktived_scripts');
+    if (data) {
+        scripts = JSON.parse(data);
+    }
+}
+
+// ===== KEYBOARD =====
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.getElementById('loginModal').style.display = 'none';
+    }
+});
+</script>
+
+</body>
+  </html>
