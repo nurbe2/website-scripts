@@ -5,312 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aktived Scripts</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            min-height: 100vh;
-        }
-        header {
-            background: linear-gradient(135deg, #6c2bd9, #00b4d8);
-            padding: 15px 20px;
-            text-align: center;
-        }
-        header h1 {
-            font-size: 22px;
-        }
-        header p {
-            font-size: 12px;
-            color: #ddd;
-        }
-        .container {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 15px;
-        }
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:Arial,sans-serif;background:#0a0a0a;color:#fff;min-height:100vh}
+        header{background:linear-gradient(135deg,#6c2bd9,#00b4d8);padding:15px 20px;text-align:center}
+        header h1{font-size:22px}
+        header p{font-size:12px;color:#ddd}
+        .container{max-width:500px;margin:0 auto;padding:15px}
         
-        /* LOGIN */
-        .login-screen {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #0a0a0a;
-            padding: 20px;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 999;
-        }
-        .login-screen.hidden {
-            display: none !important;
-        }
-        .login-box {
-            background: #1a1a2e;
-            padding: 35px 25px;
-            border-radius: 24px;
-            border: 1px solid #2d2d44;
-            width: 100%;
-            max-width: 380px;
-            text-align: center;
-        }
-        .login-box .logo {
-            font-size: 50px;
-        }
-        .login-box h1 {
-            font-size: 24px;
-            background: linear-gradient(135deg, #6c2bd9, #00b4d8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .login-box .sub {
-            color: #888;
-            font-size: 14px;
-            margin: 5px 0 20px;
-        }
-        .login-box input {
-            width: 100%;
-            padding: 14px 16px;
-            margin: 8px 0;
-            background: #0d0d1a;
-            border: 2px solid #2d2d44;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 16px;
-        }
-        .login-box input:focus {
-            outline: none;
-            border-color: #6c2bd9;
-        }
-        .login-box .btn-login {
-            width: 100%;
-            padding: 14px;
-            margin-top: 10px;
-            background: linear-gradient(135deg, #6c2bd9, #8b5cf6);
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .login-error {
-            color: #ef4444;
-            font-size: 14px;
-            margin-top: 10px;
-            display: none;
-        }
-        .login-box .forgot {
-            color: #555;
-            font-size: 13px;
-            margin-top: 15px;
-        }
-        .login-box .register-link {
-            color: #6c2bd9;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .login-box .register-link:hover {
-            color: #8b5cf6;
-        }
+        .login-screen{display:flex;justify-content:center;align-items:center;min-height:100vh;background:#0a0a0a;padding:20px;position:fixed;top:0;left:0;width:100%;height:100%;z-index:999}
+        .login-screen.hidden{display:none !important}
+        .login-box{background:#1a1a2e;padding:35px 25px;border-radius:24px;border:1px solid #2d2d44;width:100%;max-width:380px;text-align:center}
+        .login-box .logo{font-size:50px}
+        .login-box h1{font-size:24px;background:linear-gradient(135deg,#6c2bd9,#00b4d8);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+        .login-box .sub{color:#888;font-size:14px;margin:5px 0 20px}
+        .login-box input{width:100%;padding:14px 16px;margin:8px 0;background:#0d0d1a;border:2px solid #2d2d44;border-radius:12px;color:#fff;font-size:16px}
+        .login-box input:focus{outline:none;border-color:#6c2bd9}
+        .login-box .btn-login{width:100%;padding:14px;margin-top:10px;background:linear-gradient(135deg,#6c2bd9,#8b5cf6);border:none;border-radius:12px;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
+        .login-box .btn-login:hover{background:linear-gradient(135deg,#8b5cf6,#6c2bd9)}
+        .login-error{color:#ef4444;font-size:14px;margin-top:10px;display:none}
+        .login-box .forgot{color:#555;font-size:13px;margin-top:15px}
+        .login-box .register-link{color:#6c2bd9;cursor:pointer;font-weight:bold}
+        .login-box .register-link:hover{color:#8b5cf6}
         
-        /* KARTOCHKA */
-        .card {
-            background: #1a1a2e;
-            border-radius: 16px;
-            padding: 18px;
-            margin-bottom: 15px;
-            border: 1px solid #2d2d44;
-        }
-        .card h2 {
-            color: #8b5cf6;
-            font-size: 17px;
-            margin-bottom: 12px;
-        }
+        .card{background:#1a1a2e;border-radius:16px;padding:18px;margin-bottom:15px;border:1px solid #2d2d44}
+        .card h2{color:#8b5cf6;font-size:17px;margin-bottom:12px}
         
-        /* QIDIRUV */
-        .search-box {
-            display: flex;
-            gap: 8px;
-        }
-        .search-box input {
-            flex: 1;
-            padding: 12px 14px;
-            background: #0d0d1a;
-            border: 2px solid #2d2d44;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 15px;
-        }
-        .search-box input:focus {
-            outline: none;
-            border-color: #6c2bd9;
-        }
-        .search-box button {
-            padding: 12px 16px;
-            background: #6c2bd9;
-            border: none;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .search-info {
-            color: #888;
-            font-size: 13px;
-            margin-top: 10px;
-        }
+        .search-box{display:flex;gap:8px}
+        .search-box input{flex:1;padding:12px 14px;background:#0d0d1a;border:2px solid #2d2d44;border-radius:12px;color:#fff;font-size:15px}
+        .search-box input:focus{outline:none;border-color:#6c2bd9}
+        .search-box button{padding:12px 16px;background:#6c2bd9;border:none;border-radius:12px;color:#fff;font-size:14px;font-weight:bold;cursor:pointer}
+        .search-box button:hover{background:#8b5cf6}
+        .search-info{color:#888;font-size:13px;margin-top:10px}
         
-        /* SCRIPT */
-        .script-box {
-            background: #0d0d1a;
-            border-radius: 12px;
-            padding: 14px;
-            margin: 10px 0;
-            border-left: 4px solid #6c2bd9;
-        }
-        .script-box .name {
-            color: #8b5cf6;
-            font-size: 15px;
-            font-weight: bold;
-        }
-        .script-box code {
-            color: #00d4ff;
-            font-size: 13px;
-            word-break: break-all;
-            display: block;
-            margin: 8px 0;
-            background: #000;
-            padding: 10px;
-            border-radius: 8px;
-            font-family: monospace;
-        }
-        .script-box .meta {
-            color: #555;
-            font-size: 11px;
-            margin-top: 5px;
-        }
-        .script-box .btn-group {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-        }
+        .script-box{background:#0d0d1a;border-radius:12px;padding:14px;margin:10px 0;border-left:4px solid #6c2bd9}
+        .script-box .name{color:#8b5cf6;font-size:15px;font-weight:bold}
+        .script-box code{color:#00d4ff;font-size:13px;word-break:break-all;display:block;margin:8px 0;background:#000;padding:10px;border-radius:8px;font-family:monospace}
+        .script-box .meta{color:#555;font-size:11px;margin-top:5px}
+        .script-box .btn-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
         
-        /* TUGMALAR */
-        .btn {
-            padding: 8px 18px;
-            border: none;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .btn-copy {
-            background: #2d2d44;
-            color: #fff;
-        }
-        .btn-copy:hover {
-            background: #6c2bd9;
-        }
-        .btn-danger {
-            background: #ef4444;
-            color: #fff;
-            padding: 6px 14px;
-            font-size: 12px;
-        }
-        .btn-upload {
-            background: #00b894;
-            color: #fff;
-            padding: 12px 20px;
-            width: 100%;
-            font-size: 16px;
-        }
-        .btn-logout {
-            background: #ef4444;
-            color: #fff;
-            padding: 8px 16px;
-            font-size: 13px;
-        }
+        .btn{padding:8px 18px;border:none;border-radius:10px;font-size:13px;font-weight:bold;cursor:pointer}
+        .btn-copy{background:#2d2d44;color:#fff}
+        .btn-copy:hover{background:#6c2bd9}
+        .btn-danger{background:#ef4444;color:#fff;padding:6px 14px;font-size:12px}
+        .btn-danger:hover{background:#dc2626}
+        .btn-upload{background:#00b894;color:#fff;padding:12px 20px;width:100%;font-size:16px}
+        .btn-upload:hover{background:#00a884}
+        .btn-logout{background:#ef4444;color:#fff;padding:8px 16px;font-size:13px}
+        .btn-logout:hover{background:#dc2626}
         
-        /* ADMIN */
-        .admin-panel {
-            display: none;
-        }
-        .admin-panel input,
-        .admin-panel textarea {
-            width: 100%;
-            padding: 12px;
-            background: #0d0d1a;
-            border: 2px solid #2d2d44;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 15px;
-            margin: 6px 0;
-        }
-        .admin-panel textarea {
-            height: 110px;
-            font-family: monospace;
-            font-size: 14px;
-        }
-        .admin-panel input:focus,
-        .admin-panel textarea:focus {
-            outline: none;
-            border-color: #6c2bd9;
-        }
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
+        .admin-panel{display:none}
+        .admin-panel input,.admin-panel textarea{width:100%;padding:12px;background:#0d0d1a;border:2px solid #2d2d44;border-radius:12px;color:#fff;font-size:15px;margin:6px 0}
+        .admin-panel textarea{height:110px;font-family:monospace;font-size:14px;resize:vertical}
+        .admin-panel input:focus,.admin-panel textarea:focus{outline:none;border-color:#6c2bd9}
+        .admin-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
         
-        .no-results {
-            color: #555;
-            text-align: center;
-            padding: 30px;
-            font-size: 16px;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            color: #444;
-            font-size: 12px;
-        }
-        .footer span {
-            color: #6c2bd9;
-        }
+        .no-results{color:#555;text-align:center;padding:30px;font-size:16px}
+        .footer{text-align:center;padding:20px;color:#444;font-size:12px}
+        .footer span{color:#6c2bd9}
         
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #1a1a2e;
-            padding: 12px 24px;
-            border-radius: 12px;
-            border: 1px solid #2d2d44;
-            color: #fff;
-            font-size: 14px;
-            z-index: 999;
-            opacity: 0;
-            transition: all 0.4s;
-            pointer-events: none;
-            max-width: 90%;
-            text-align: center;
-        }
-        .toast.show {
-            opacity: 1;
-            bottom: 30px;
-        }
+        .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#1a1a2e;padding:12px 24px;border-radius:12px;border:1px solid #2d2d44;color:#fff;font-size:14px;z-index:999;opacity:0;transition:all 0.4s;pointer-events:none;max-width:90%;text-align:center}
+        .toast.show{opacity:1;bottom:30px}
+        
+        /* ADMIN KIRISH UCHUN MAXSUS */
+        .admin-badge{background:#6c2bd9;color:#fff;padding:2px 10px;border-radius:12px;font-size:11px;margin-left:8px}
     </style>
 </head>
 <body>
@@ -321,7 +78,7 @@
         <div class="logo">🔥</div>
         <h1>AKTIVED SCRIPTS</h1>
         <p class="sub">Hisobingizga kiring</p>
-        <input type="text" id="loginUser" placeholder="User">
+        <input type="text" id="loginUser" placeholder="User" value="admin">
         <input type="password" id="loginPass" placeholder="Parol">
         <button class="btn-login" onclick="login()">🔑 Kirish</button>
         <p class="login-error" id="loginError">❌ User yoki parol noto'g'ri!</p>
@@ -337,7 +94,7 @@
         <h1>Ro'yxatdan o'tish</h1>
         <p class="sub">Yangi hisob yarating</p>
         <input type="text" id="regUser" placeholder="User">
-        <input type="password" id="regPass" placeholder="Parol">
+        <input type="password" id="regPass" placeholder="Parol (min 6 belgi)">
         <input type="password" id="regPass2" placeholder="Parolni takrorlang">
         <button class="btn-login" onclick="register()">✅ Ro'yxatdan o'tish</button>
         <p class="login-error" id="regError" style="display:none;">❌ Xatolik!</p>
@@ -365,7 +122,7 @@
         
         <div class="admin-panel card" id="adminPanel">
             <div class="admin-header">
-                <h2>🔧 Admin Panel</h2>
+                <h2>🔧 Admin Panel <span class="admin-badge">ADMIN</span></h2>
                 <button class="btn btn-logout" onclick="logout()">🚪 Chiqish</button>
             </div>
             <input type="text" id="scriptName" placeholder="Script nomi...">
@@ -388,6 +145,11 @@
 <div class="toast" id="toast"></div>
 
 <script>
+// ============================================================
+//  ADMIN PAROLI (MURAKKAB)
+// ============================================================
+const ADMIN_PASSWORD = "Aktived2026@Secure#Hub";
+
 // ============================================================
 //  MA'LUMOTLAR
 // ============================================================
@@ -431,7 +193,7 @@ window.onload = function() {
     
     showScripts();
     updateTotal();
-    console.log('✅ Sayt yuklandi! Scriptlar:', scripts.length);
+    console.log('✅ Sayt yuklandi!');
 };
 
 // ============================================================
@@ -440,19 +202,13 @@ window.onload = function() {
 function saveScripts() {
     try {
         localStorage.setItem('aktived_scripts', JSON.stringify(scripts));
-        console.log('✅ Scriptlar saqlandi:', scripts.length);
-    } catch(e) {
-        console.log('❌ Saqlash xatosi:', e);
-    }
+    } catch(e) {}
 }
 
 function saveUsers() {
     try {
         localStorage.setItem('aktived_users', JSON.stringify(users));
-        console.log('✅ Userlar saqlandi:', users.length);
-    } catch(e) {
-        console.log('❌ Saqlash xatosi:', e);
-    }
+    } catch(e) {}
 }
 
 // ============================================================
@@ -485,13 +241,12 @@ function register() {
         document.getElementById('regError').style.display = 'block';
         return;
     }
-    if (pass.length < 4) {
-        document.getElementById('regError').textContent = '❌ Parol 4 ta belgidan kam!';
+    if (pass.length < 6) {
+        document.getElementById('regError').textContent = '❌ Parol 6 ta belgidan kam!';
         document.getElementById('regError').style.display = 'block';
         return;
     }
     
-    // User borligini tekshirish
     const exists = users.some(u => u.username === user);
     if (exists) {
         document.getElementById('regError').textContent = '❌ Bu user band!';
@@ -499,7 +254,6 @@ function register() {
         return;
     }
     
-    // Yangi user qo'shish (birinchi user admin)
     const newUser = {
         username: user,
         password: pass,
@@ -512,8 +266,6 @@ function register() {
     showLogin();
     document.getElementById('loginUser').value = user;
     document.getElementById('loginPass').value = pass;
-    
-    console.log('✅ Yangi user:', user, 'Admin:', newUser.isAdmin);
 }
 
 // ============================================================
@@ -529,7 +281,24 @@ function login() {
         return;
     }
     
-    // Userlarni qayta yuklash
+    // ADMIN TEKSHIRISH (MAXSUS PAROL)
+    if (user === "admin" && pass === ADMIN_PASSWORD) {
+        isAdmin = true;
+        currentUser = "admin";
+        
+        document.getElementById('loginScreen').classList.add('hidden');
+        document.getElementById('mainApp').style.display = 'block';
+        document.getElementById('loginError').style.display = 'none';
+        document.getElementById('adminPanel').style.display = 'block';
+        document.getElementById('userDisplay').textContent = '👑 Admin: ' + user;
+        
+        showScripts();
+        updateTotal();
+        showToast('✅ Xush kelibsiz, Admin!');
+        return;
+    }
+    
+    // ODDIY USER TEKSHIRISH
     try {
         const saved = localStorage.getItem('aktived_users');
         if (saved) {
@@ -543,21 +312,16 @@ function login() {
         isAdmin = found.isAdmin || false;
         currentUser = user;
         
-        // Login ekranini yashirish
         document.getElementById('loginScreen').classList.add('hidden');
-        document.getElementById('registerScreen').style.display = 'none';
         document.getElementById('mainApp').style.display = 'block';
         document.getElementById('loginError').style.display = 'none';
         
-        // Admin panel
         if (isAdmin) {
             document.getElementById('adminPanel').style.display = 'block';
             document.getElementById('userDisplay').textContent = '👑 Admin: ' + user;
-            console.log('👑 Admin kirish:', user);
         } else {
             document.getElementById('adminPanel').style.display = 'none';
             document.getElementById('userDisplay').textContent = '👤 Xush kelibsiz, ' + user + '!';
-            console.log('👤 User kirish:', user);
         }
         
         showScripts();
@@ -566,7 +330,6 @@ function login() {
     } else {
         document.getElementById('loginError').textContent = '❌ User yoki parol noto\'g\'ri!';
         document.getElementById('loginError').style.display = 'block';
-        console.log('❌ Login xato:', user);
     }
 }
 
@@ -579,10 +342,9 @@ function logout() {
     document.getElementById('adminPanel').style.display = 'none';
     document.getElementById('loginScreen').classList.remove('hidden');
     document.getElementById('mainApp').style.display = 'none';
-    document.getElementById('loginUser').value = '';
+    document.getElementById('loginUser').value = 'admin';
     document.getElementById('loginPass').value = '';
     showToast('👋 Chiqildi');
-    console.log('👋 Chiqildi');
 }
 
 // ============================================================
@@ -689,7 +451,6 @@ function addScript() {
     document.getElementById('scriptName').value = '';
     document.getElementById('scriptCode').value = '';
     showToast('✅ Script qo\'shildi!');
-    console.log('✅ Script qo\'shildi:', name);
 }
 
 // ============================================================
@@ -702,7 +463,6 @@ function deleteScript(id) {
         showScripts();
         updateTotal();
         showToast('🗑 Script o\'chirildi');
-        console.log('🗑 Script o\'chirildi:', id);
     }
 }
 
@@ -731,11 +491,9 @@ function showToast(text) {
 // ============================================================
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Enter') {
-        // Login ekrani ko'rinayotgan bo'lsa
         if (!document.getElementById('loginScreen').classList.contains('hidden')) {
             login();
         }
-        // Ro'yxatdan o'tish ekrani ko'rinayotgan bo'lsa
         if (document.getElementById('registerScreen').style.display === 'flex') {
             register();
         }
@@ -744,8 +502,100 @@ document.addEventListener('keydown', function(e) {
 
 console.log('🔥 AKTIVED SCRIPTS sayti yuklandi!');
 console.log('👤 Creator: aktived');
+console.log('🔑 Admin paroli: Aktived2026@Secure#Hub');
 console.log('📊 Jami scriptlar:', scripts.length);
 console.log('👥 Jami userlar:', users.length);
+
+// ============================================================
+//  ADMIN PANELNI TEKSHIRISH (XAVFSIZLIK)
+// ============================================================
+// Faqat admin bo'lganda admin panel ko'rinadi
+// Aks holda yashirin bo'ladi
+
+// ============================================================
+//  MA'LUMOTLARNI O'CHIRISH (FAQAT ADMIN UCHUN)
+// ============================================================
+function clearAllData() {
+    if (!isAdmin) {
+        showToast('❌ Faqat admin!');
+        return;
+    }
+    if (confirm('Barcha ma\'lumotlarni o\'chirmoqchimisiz?')) {
+        localStorage.removeItem('aktived_scripts');
+        localStorage.removeItem('aktived_users');
+        scripts = [];
+        users = [];
+        showScripts();
+        updateTotal();
+        showToast('🗑 Barcha ma\'lumotlar o\'chirildi!');
+        console.log('🗑 Barcha ma\'lumotlar o\'chirildi');
+    }
+}
+
+// ============================================================
+//  EKSPORT (FAQAT ADMIN UCHUN)
+// ============================================================
+function exportData() {
+    if (!isAdmin) {
+        showToast('❌ Faqat admin!');
+        return;
+    }
+    const data = {
+        scripts: scripts,
+        users: users,
+        exportDate: new Date().toISOString()
+    };
+    const json = JSON.stringify(data, null, 2);
+    const blob = new Blob([json], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'aktived_scripts_backup.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('✅ Ma\'lumotlar eksport qilindi!');
+}
+
+// ============================================================
+//  IMPORT (FAQAT ADMIN UCHUN)
+// ============================================================
+function importData() {
+    if (!isAdmin) {
+        showToast('❌ Faqat admin!');
+        return;
+    }
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const data = JSON.parse(e.target.result);
+                if (data.scripts) {
+                    scripts = data.scripts;
+                    saveScripts();
+                }
+                if (data.users) {
+                    users = data.users;
+                    saveUsers();
+                }
+                showScripts();
+                updateTotal();
+                showToast('✅ Ma\'lumotlar import qilindi!');
+                console.log('✅ Import qilindi:', data);
+            } catch(err) {
+                showToast('❌ Xato fayl!');
+            }
+        };
+        reader.readAsText(file);
+    };
+    input.click();
+}
+
+console.log('✅ Barcha funksiyalar yuklandi!');
 </script>
 </body>
 </html>
